@@ -8,6 +8,8 @@
 #include <memory>
 #include <cmath>
 #include <limits>
+#include <chrono>
+#include <thread>
 
 using std::cout;
 using std::cerr;
