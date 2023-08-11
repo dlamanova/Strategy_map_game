@@ -154,11 +154,13 @@ std::string Game::build() {
             command += createBuildCommand();
             return command;
         }
+        #ifdef BUILD
         else
         {
             command += (char)it->getProduct();
             return command;
         }
+        #endif
     }
     command.erase();
     return command;
