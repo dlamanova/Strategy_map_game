@@ -3,7 +3,7 @@
 #include "libraries.hpp"
 #include "mob.hpp"
 
-#define BUILD
+//#define BUILD
 
 /**
  * @brief The core Game class that manages the game environment, entities, and actions.
