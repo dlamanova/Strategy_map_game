@@ -147,29 +147,32 @@ std::string Game::build() {
 
     for (const auto& it : mobs)
     {
-        int id = it->getID();
-        command += std::to_string(id) + " B ";
-        if (it->getType() == B && !it->getIsEnemy() && !it->isProduct())
+        if(it->getType() == B && !it->getIsEnemy())
         {
-            std::string type = createBuildCommand();
-            if (!type.empty())
+            int id = it->getID();
+            command += std::to_string(id) + " B ";
+            if (!it->isProduct())
             {
-                command += type;
-                return command;
+                std::string type = createBuildCommand();
+                if (!type.empty())
+                {
+                    command += type;
+                    return command;
+                }
+                else
+                {
+                    command.erase();
+                    return command;
+                }
             }
+            #ifdef BUILD
             else
             {
-                command.erase();
+                command += (char)it->getProduct();
                 return command;
             }
+            #endif
         }
-        #ifdef BUILD
-        else
-        {
-            command += (char)it->getProduct();
-            return command;
-        }
-        #endif
     }
     command.erase();
     return command;
