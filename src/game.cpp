@@ -149,10 +149,19 @@ std::string Game::build() {
     {
         int id = it->getID();
         command += std::to_string(id) + " B ";
-        if (findMyBase() >= 0 && !it->isProduct())
+        if (it->getType() == B && !it->getIsEnemy() && !it->isProduct())
         {
-            command += createBuildCommand();
-            return command;
+            std::string type = createBuildCommand();
+            if (!type.empty())
+            {
+                command += type;
+                return command;
+            }
+            else
+            {
+                command.erase();
+                return command;
+            }
         }
         #ifdef BUILD
         else
