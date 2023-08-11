@@ -145,23 +145,32 @@ bool Game::isSwordsman()
 std::string Game::build() {
     std::string command = "";
 
-    for (const auto& it : mobs) {
+    for (const auto& it : mobs)
+    {
         int id = it->getID();
         command += std::to_string(id) + " B ";
-        if (findMyBase() >= 0 && it->isProduct()) {
+        if (findMyBase() >= 0 && !it->isProduct())
+        {
             command += createBuildCommand();
             return command;
         }
+        else
+        {
+            command += (char)it->getProduct();
+            return command;
+        }
     }
-
+    command.erase();
     return command;
 }
 
-std::string Game::createBuildCommand() {
+std::string Game::createBuildCommand()
+{
     long int mon = this->money;
     int cs = makeCase(mon);
 
-    switch (cs) {
+    switch (cs)
+    {
         case LESS_THAN_100:
             return "";
         case LESS_THAN_250:
@@ -177,17 +186,22 @@ std::string Game::createBuildCommand() {
     }
 }
 
-std::string Game::createWorkerSwordsmanArcher() {
+std::string Game::createWorkerSwordsmanArcher()
+{
     if (!isWorker()) return "W";
     if (!isSwordsman()) return "S";
     return "A";
 }
 
-std::string Game::createUnitBasedOnSize(int maxSize, const std::string& fallbackUnit, const std::string& finalUnit) {
-    if (int(mobs.size()) <= maxSize) {
+std::string Game::createUnitBasedOnSize(int maxSize, const std::string& fallbackUnit, const std::string& finalUnit)
+{
+    if (int(mobs.size()) <= maxSize)
+    {
         if (!isWorker()) return "W";
         return finalUnit;
-    } else {
+    }
+    else
+    {
         return fallbackUnit;
     }
 }

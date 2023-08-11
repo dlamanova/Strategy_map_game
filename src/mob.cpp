@@ -121,6 +121,11 @@ bool Mob::isProduct(){
     return false;
 }
 
+char Mob::getProduct()
+{
+    return 0;
+}
+
 int Mob::attack()
 {
     int dmg = 0;

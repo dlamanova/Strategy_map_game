@@ -89,3 +89,8 @@ bool Base::isProduct()
         return true;
     }
 }
+
+char Base::getProduct()
+{
+    return this->product;
+}

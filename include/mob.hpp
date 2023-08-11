@@ -65,6 +65,12 @@ public:
     virtual bool isProduct();
 
     /**
+     * @brief Checks which mob is a producted by base.
+     * @return Type of producted mob.
+     */
+    virtual char getProduct();
+
+    /**
      * @brief Sets the coordinates of the mob.
      * @param x X-coordinate.
      * @param y Y-coordinate.
@@ -162,6 +168,12 @@ class Base : public Mob
      * @return True if the mob is a product, false otherwise.
      */
     bool isProduct() override;
+
+    /**
+     * @brief Checks which mob is a producted by base.
+     * @return Type of producted mob.
+     */
+    char getProduct() override;
 };
 
 /**
